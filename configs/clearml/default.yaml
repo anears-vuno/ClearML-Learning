@@ -1,0 +1,12 @@
+# ClearML Experiment Management configuration
+# https://clear.ml/docs/latest/docs/
+
+enable: true
+project_name: "MNIST"
+task_name: "mnist_training"
+tags: ${tags}
+
+# auto-connect Hydra config to ClearML UI
+auto_connect_frameworks:
+  tensorboard: true
+  pytorch: true

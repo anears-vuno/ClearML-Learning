@@ -1,0 +1,4 @@
+# Use this config to disable ClearML
+# python train.py clearml=none
+
+enable: false
