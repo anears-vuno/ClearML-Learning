@@ -39,6 +39,11 @@ def init_clearml_task(cfg: DictConfig) -> Optional[Any]:
     hydra_cfg = OmegaConf.to_container(cfg, resolve=True, throw_on_missing=False)
     task.connect(hydra_cfg, name="hydra_config")
 
+    queue_name = clearml_cfg.get("remote_queue_name")
+    if queue_name:
+        log.info(f"Enqueuing ClearML task to remote queue '{queue_name}'")
+        task.execute_remotely(queue_name=queue_name)
+
     log.info(
         f"ClearML Task initialized: "
         f"project='{clearml_cfg.project_name}', "

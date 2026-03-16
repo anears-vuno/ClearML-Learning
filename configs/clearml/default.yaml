@@ -5,6 +5,7 @@ enable: true
 project_name: "MNIST"
 task_name: "mnist_training"
 tags: ${tags}
+remote_queue_name: null
 
 # auto-connect Hydra config to ClearML UI
 auto_connect_frameworks:
