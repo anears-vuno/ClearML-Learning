@@ -7,7 +7,7 @@ DATASET_NAME = "mnist_dataset"
 QUEUE = "default"
 
 # 베이스 학습 task id를 넣으세요.
-BASE_TASK_ID = "a38aa112e5394e4d936352296b5e5992"
+BASE_TASK_ID = "29e64976081640d0bfe9b6e3015b1ab7"
 
 def main():
     controller = Task.init(project_name=PROJECT, task_name="mnist_ct_controller")
