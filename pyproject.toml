@@ -1,17 +1,41 @@
+[project]
+name = "clearml-learning"
+version = "0.1.0"
+description = "ClearML Learning Project"
+requires-python = ">=3.10"
+dependencies = [
+    # pytorch
+    "torch>=2.5.0,<2.6.0",
+    "torchvision>=0.20.0,<0.21.0",
+    "lightning>=2.0.0",
+    "torchmetrics>=0.11.4",
+
+    # hydra
+    "hydra-core==1.3.2",
+    "hydra-colorlog==1.2.0",
+    "hydra-optuna-sweeper==1.2.0",
+
+    # others
+    "rootutils",
+    "rich",
+    "pre-commit",
+    "pytest",
+]
+
 [tool.pytest.ini_options]
 addopts = [
-  "--color=yes",
-  "--durations=0",
-  "--strict-markers",
-  "--doctest-modules",
+    "--color=yes",
+    "--durations=0",
+    "--strict-markers",
+    "--doctest-modules",
 ]
 filterwarnings = [
-  "ignore::DeprecationWarning",
-  "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
 ]
 log_cli = "True"
 markers = [
-  "slow: slow tests",
+    "slow: slow tests",
 ]
 minversion = "6.0"
 testpaths = "tests/"
