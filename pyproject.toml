@@ -19,6 +19,7 @@ dependencies = [
     "pre-commit",
     "pytest",
     "tensorboard>=2.20.0",
+    "clearml>=2.1.5",
 ]
 
 [tool.pytest.ini_options]
