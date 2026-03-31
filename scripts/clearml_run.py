@@ -72,7 +72,14 @@ def create_task(
 def clone_task(base_task_id: str, hydra_args: list[str]) -> Task:
     task = Task.clone(source_task=base_task_id)
     if hydra_args:
-        task.set_parameters({f"Args/{arg}": "" for arg in hydra_args})
+        params: dict[str, str] = {}
+        for arg in hydra_args:
+            if "=" in arg:
+                key, value = arg.split("=", 1)
+                params[f"Args/{key}"] = value
+            else:
+                params[f"Args/{arg}"] = ""
+        task.set_parameters(params)
     return task
 
 
