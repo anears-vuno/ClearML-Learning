@@ -30,7 +30,6 @@ from src.utils import (
     RankedLogger,
     extras,
     get_metric_value,
-    init_clearml_task,
     instantiate_callbacks,
     instantiate_loggers,
     log_hyperparameters,
@@ -85,7 +84,7 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
 
     if cfg.get("train"):
         log.info("Starting training!")
-        trainer.fit(model=model, datamodule=datamodule, ckpt_path=cfg.get("ckpt_path"), weights_only=False)
+        trainer.fit(model=model, datamodule=datamodule, ckpt_path=cfg.get("ckpt_path"))
 
     train_metrics = trainer.callback_metrics
 
@@ -95,7 +94,7 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         if ckpt_path == "":
             log.warning("Best ckpt not found! Using current weights for testing...")
             ckpt_path = None
-        trainer.test(model=model, datamodule=datamodule, ckpt_path=ckpt_path, weights_only=False)
+        trainer.test(model=model, datamodule=datamodule, ckpt_path=ckpt_path)
         log.info(f"Best ckpt path: {ckpt_path}")
 
     test_metrics = trainer.callback_metrics
@@ -116,10 +115,6 @@ def main(cfg: DictConfig) -> Optional[float]:
     # apply extra utilities
     # (e.g. ask for tags if none are provided in cfg, print cfg tree, etc.)
     extras(cfg)
-
-    # initialize ClearML task (must be before trainer/logger instantiation
-    # so ClearML can auto-capture TensorBoard logs)
-    init_clearml_task(cfg)
 
     # train the model
     metric_dict, _ = train(cfg)
