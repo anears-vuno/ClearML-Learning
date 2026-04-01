@@ -63,9 +63,17 @@ def create_task(
         script=script,
         working_directory=".",
         packages=packages,
-        argparse_args=hydra_args,
         docker=docker,
     )
+    if hydra_args:
+        params: dict[str, str] = {}
+        for arg in hydra_args:
+            if "=" in arg:
+                key, value = arg.split("=", 1)
+                params[f"Args/{key}"] = value
+            else:
+                params[f"Args/{arg}"] = ""
+        task.set_parameters(params)
     return task
 
 
@@ -97,8 +105,8 @@ def main() -> None:
     )
     parser.add_argument(
         "--script",
-        default="src/train.py",
-        help="Entry point script (default: src/train.py)",
+        default="scripts/clearml_train.py",
+        help="Entry point script (default: scripts/clearml_train.py)",
     )
     parser.add_argument(
         "--queue",
