@@ -105,8 +105,8 @@ def main() -> None:
     )
     parser.add_argument(
         "--script",
-        default="scripts/clearml_train.py",
-        help="Entry point script (default: scripts/clearml_train.py)",
+        default="src/train.py",
+        help="Entry point script (default: src/train.py)",
     )
     parser.add_argument(
         "--queue",

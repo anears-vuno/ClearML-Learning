@@ -14,7 +14,7 @@ venv/
 env/
 
 # Data
-data/
+/data/
 
 # Logs & Checkpoints
 logs/
