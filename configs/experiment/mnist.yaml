@@ -23,7 +23,7 @@ trainer:
 
 model:
   optimizer:
-    lr: 0.002
+    lr: 0.0001
   net:
     lin1_size: 128
     lin2_size: 256
