@@ -41,3 +41,5 @@ htmlcov/
 # Hydra outputs
 outputs/
 multirun/
+
+.env
